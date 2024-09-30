@@ -3,13 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,16 +26,17 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Grid::make([
-                    'md' => 2
+                    'md' => 2,
                 ])
                     ->schema([
-                    TextInput::make('name'),
-                    Textarea::make('description'),
-                    Select::make('category_id')
-                        ->options(Category::all()->pluck('name', 'id'))
-                        ->selectablePlaceholder(false),
-                    TextInput::make('price'),
-                ])
+                        TextInput::make('name')->required(),
+                        Textarea::make('description'),
+                        Select::make('category_id')
+                            ->required()
+                            ->options(Category::all()->pluck('name', 'id')),
+                        TextInput::make('price')->required(),
+                        Toggle::make('active'),
+                    ]),
             ]);
     }
 

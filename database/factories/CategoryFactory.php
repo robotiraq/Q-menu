@@ -18,10 +18,11 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-           'name' => $this->faker->name,
-           'slug' => $this->faker->slug,
-           'description' => $this->faker->text,
-           'img_id' => $this->faker->randomFloat(),
+            'name' => $this->faker->name,
+            'slug' => $this->faker->slug,
+            'description' => $this->faker->text,
+            'img_id' => $this->faker->randomFloat(),
+            'active' => $this->faker->boolean,
         ];
     }
 }

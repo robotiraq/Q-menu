@@ -7,6 +7,7 @@ use App\Models\Category;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,13 +23,14 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-               Grid::make([
-                   'md' => 2
-               ])
-                   ->schema([
-                   TextInput::make('name'),
-                   Textarea::make('description'),
-               ])
+                Grid::make([
+                    'md' => 2,
+                ])
+                    ->schema([
+                        TextInput::make('name'),
+                        Textarea::make('description'),
+                        Toggle::make('active'),
+                    ]),
             ]);
     }
 
@@ -48,9 +50,9 @@ class CategoryResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //                Tables\Actions\BulkActionGroup::make([
+                //                    Tables\Actions\DeleteBulkAction::make(),
+                //                ]),
             ]);
     }
 
