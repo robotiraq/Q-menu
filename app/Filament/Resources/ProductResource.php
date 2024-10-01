@@ -44,10 +44,11 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('description')->limit(50),
-                Tables\Columns\TextColumn::make('category.name'),
-                Tables\Columns\TextColumn::make('price')->suffix(' IQD'),
+                Tables\Columns\Layout\Split::make([
+                    Tables\Columns\TextColumn::make('name'),
+                    Tables\Columns\TextColumn::make('category.name'),
+                    Tables\Columns\TextColumn::make('price')->suffix(' IQD'),
+                ]),
             ])
             ->filters([
                 //
